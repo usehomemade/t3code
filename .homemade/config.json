@@ -24,8 +24,7 @@
       "share": "owner",
       "healthcheck": {
         "path": "/"
-      },
-      "signInUrl": "${HOMEMADE_URL_5733}/pair#token=${T3CODE_DEV_AUTH_TOKEN}"
+      }
     }
   }
 }
