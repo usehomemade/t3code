@@ -1,0 +1,34 @@
+{
+  "$schema": "https://homemade.dev/schemas/config.json",
+  "size": "small",
+  "env_schema": [
+    {
+      "key": "T3CODE_DEV_AUTH_TOKEN",
+      "generate": true
+    }
+  ],
+  "warmup": [
+    "pnpm install --frozen-lockfile"
+  ],
+  "install": [
+    "pnpm install --frozen-lockfile"
+  ],
+  "services": {
+    "server": {
+      "displayName": "T3 server",
+      "cmd": "exec pnpm run dev:server --host 0.0.0.0",
+      "port": 13773
+    },
+    "web": {
+      "displayName": "T3 Code",
+      "cmd": "cd apps/web && T3CODE_PORT=13773 T3CODE_SINGLE_ORIGIN_DEV=1 exec pnpm exec vp dev --host 0.0.0.0",
+      "port": 5733,
+      "url": true,
+      "share": "owner",
+      "healthcheck": {
+        "path": "/"
+      },
+      "signInUrl": "${HOMEMADE_URL_5733}/pair#token=${T3CODE_DEV_AUTH_TOKEN}"
+    }
+  }
+}
